@@ -74,6 +74,18 @@ public class DummyControllerTest {
     //save 함수는 id를 전달하면 해당 id에 대한 데이터가 있으면 update를 해주고
     //save 함수는 id를 전달하면 해당 id에 대한 데이터가 없으면 insert를 합니다.
 
+    @DeleteMapping("/dummy/user/{id}")
+    public String delete(@PathVariable int id){
+
+        try{
+            userRepository.deleteById(id);
+        }catch (Exception e){
+            return "삭제에 실패하였습니다. 해당 id는 DB에 없습니다.";
+        }
+        return "삭제되었습니다. id : " + id;
+
+    }
+
     @Transactional // SAVE를 하지 않아도 업데이트가 가능 , 함수 종료시 자동 commit
     @PutMapping("/dummy/user/{id}")
     public User updateUser(@PathVariable int id, @RequestBody User requestUser){
@@ -92,6 +104,6 @@ public class DummyControllerTest {
         //userRepository.save(requestUser);
 
         //더티 체킹
-        return null;
+        return user;
     }
 }
