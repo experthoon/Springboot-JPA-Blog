@@ -22,11 +22,19 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       use-new-id-generator-mappings: false
-    show-sql: true
+    show-sql: false
     properties:
       hibernate.format_sql: true
 
     jackson:
       serialization:
         fail-on-empty-beans: false
+
+    http:
+      encoding:
+        charset:UTF-8
+        enabled:true
+        force:true
+cos:
+  key: cos1234
 
